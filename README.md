@@ -1,5 +1,7 @@
 # demo-ploep
 
+[![CI](https://github.com/<your-username>/demo/actions/workflows/maven.yml/badge.svg)](https://github.com/<your-username>/demo/actions)
+
 Demo project for Spring Boot (WebFlux) — simple example application.
 
 ## ⚙️ Requirements
