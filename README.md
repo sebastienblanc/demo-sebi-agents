@@ -44,7 +44,20 @@ This project is licensed under the Apache-2.0 License — see the `LICENSE` file
 
 - Please update the `pom.xml` `scm` and `url` values with your GitHub repository URL after creating the remote (e.g., `https://github.com/<your-username>/demo`).
 
+## 📤 Publish to GitHub
+
+You can create the remote repository and push the current branch with either:
+
+- Using GH CLI:
+  ```
+  gh repo create <your-username>/demo --public --source=. --remote=origin --push
+  ```
+- Or using the GitHub website: create a new repo named `demo`, then run:
+  ```
+  git remote add origin git@github.com:<your-username>/demo.git
+  git push -u origin main
+  ```
+
+After pushing, enable branch protection on `main` requiring the CI `CI — Maven Build & Test` workflow to pass before merging.
 
 ---
-
-(Generated files: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md`, `.github/workflows/maven.yml` will be added next.)
