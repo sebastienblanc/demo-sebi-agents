@@ -23,15 +23,15 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
 
-      - name: Build and run tests
+      - name: Build and run unit tests
         run: |
-          ./mvnw -B -DskipTests=false package
+          ./mvnw -B -DskipTests=false -Dexclude-integration-tests -Dsurefire.excludes="**/*IntegrationTests" package
 
-      - name: Upload test results
+      - name: Upload unit test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: maven-test-results
+          name: maven-unit-test-results
           path: target/surefire-reports/**
 
   static-analysis:
@@ -61,3 +61,31 @@ jobs:
             target/checkstyle-result.xml
             target/spotbugsXml.xml
             target/pmd.xml
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        java: [17]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
+
+      - name: Run integration tests
+        run: |
+          ./mvnw -B -Dtest="**/*IntegrationTests" test
+
+      - name: Upload integration test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maven-integration-test-results
+          path: target/surefire-reports/**
