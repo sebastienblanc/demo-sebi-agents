@@ -46,6 +46,10 @@ This project is licensed under the Apache-2.0 License — see the `LICENSE` file
 
 - Please update the `pom.xml` `scm` and `url` values with your GitHub repository URL after creating the remote (e.g., `https://github.com/<your-username>/demo`).
 
+## 📚 API documentation
+
+This project exposes OpenAPI docs via `springdoc-openapi`. When running locally the Swagger UI is available at `/swagger-ui/index.html` (or `/swagger-ui.html` depending on version). Add the dependency `org.springdoc:springdoc-openapi-starter-webflux-ui` to `pom.xml` to enable it.
+
 ## 📤 Publish to GitHub
 
 You can create the remote repository and push the current branch with either:
