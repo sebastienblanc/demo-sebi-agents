@@ -37,6 +37,14 @@ Run locally:
 
 - Make changes on a feature branch and open a Pull Request targeting `main`.
 - Ensure all tests pass locally before pushing.
+- Run static checks locally:
+
+```bash
+./mvnw checkstyle:check spotbugs:check pmd:check
+```
+
+CI runs the same checks automatically; fix violations locally before pushing.
+
 
 ## 📄 License
 
