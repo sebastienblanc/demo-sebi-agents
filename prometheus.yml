@@ -1,0 +1,22 @@
+# Sample Prometheus configuration for scraping metrics from demo-ploep application
+# 
+# Usage:
+# 1. Ensure the application is running (./mvnw spring-boot:run)
+# 2. Start Prometheus with this configuration:
+#    prometheus --config.file=prometheus.yml
+# 3. Access Prometheus UI at http://localhost:9090
+
+global:
+  scrape_interval: 15s      # Set the scrape interval to every 15 seconds
+  evaluation_interval: 15s  # Evaluate rules every 15 seconds
+
+# Scrape configuration for the demo-ploep application
+scrape_configs:
+  - job_name: 'demo-ploep'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['localhost:8080']
+        labels:
+          application: 'demo-ploep'
+          environment: 'local'
